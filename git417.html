@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ado Resonance | Music Experience</title>
+    <meta name="viewport" content="width=1280">
+    <meta name="description" content="Explore Ado Resonance, a concept music experience featuring Ado’s albums, tour dates, and interactive fan content built with modern HTML, CSS, and JavaScript.">
+    <meta name="author" content="Peyton Van Voorhees">
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/script.js" defer></script>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <div class="wrapper">
+            <div class="logo">
+                <h1>Ado Resonance</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#albums">Albums</a></li>
+                    <li><a href="#fan-challenge">Fan Challenge</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+
+            <div class="theme-toggle">
+                <button id="themeButton" type="button">
+                    Toggle Light / Dark Mode
+                </button>
+            </div>
+
+        </div>
+    </header>
+
+    <!-- MAIN -->
+    <main>
+        <section id="hero">
+            <div class="wrapper">
+                <h2>Enter the World of Ado</h2>
+                <p>
+                    A curated music experience celebrating the power,
+                    emotion, and intensity of Ado’s discography.
+                </p>
+            </div>
+        </section>
+
+        <section id="about">
+            <div class="wrapper">
+                <h2>About the Artist</h2>
+                <p>
+                    Ado is a Japanese singer known for her powerful vocal range,
+                    dramatic performances, and genre-blending sound that
+                    fuses rock, pop, and electronic influences.
+                </p>
+                <p>
+                    This concept storefront highlights selected albums
+                    and offers fans an interactive experience.
+                </p>
+            </div>
+        </section>
+
+        <!-- ALBUM DISPLAY -->
+        <section id="albums">
+            <div class="wrapper">
+
+                <h2>Featured Albums</h2>
+
+                <div class="album-controls">
+                    <button type="button" data-album="0">Kyougen (2022)</button>
+                    <button type="button" data-album="1">Uta no Uta (2022)</button>
+                    <button type="button" data-album="2">Utattemita (2023)</button>
+                    <button type="button" data-album="4">Ado "Ready For My Show Playlist" (2024)</button>
+                    <button type="button" data-album="5">Zanmu (2024)</button>
+                    <button type="button" data-album="6">Ado's Best Adobum (2025)</button>
+                </div>
+
+                <div class="album-display">
+
+                    <img 
+                        id="albumImage" 
+                        src="images/kyougen.jpg" 
+                        alt="Kyōgen album cover"
+                    >
+
+                    <h3 id="albumTitle">Kyōgen</h3>
+
+                    <p id="albumDescription">
+                        A dynamic debut album showcasing Ado’s explosive vocal
+                        intensity and theatrical storytelling across multiple genres.
+                    </p>
+
+                </div>
+
+            </div>
+        </section>
+
+
+
+        <!-- FAN CHALLENGE  -->
+        <section id="fan-challenge">
+            <div class="wrapper">
+
+                <h2>Fan Challenge</h2>
+
+                <p>
+                    Guess a number between 1 and 10. If your guess matches
+                    our hidden number, you win a special digital wallpaper.
+                </p>
+
+                <form id="gameForm" novalidate>
+                    <label for="guessInput">Enter a number (1–10):</label>
+
+                    <input 
+                        type="number" 
+                        id="guessInput"
+                        name="guessInput"
+                        min="1"
+                        max="10"
+                        required
+                    >
+
+                    <button type="submit">Submit Guess</button>
+
+                    <p class="error-message" id="gameError"></p>
+                </form>
+
+                <div id="gameResult"></div>
+
+            </div>
+        </section>
+
+        <!-- CONTACT FORM -->
+        <section id="contact">
+            <div class="wrapper">
+
+                <h2>Contact Us</h2>
+
+                <form id="contactForm" novalidate>
+
+                    <div>
+                        <label for="fullName">Full Name *</label>
+                        <input 
+                            type="text"
+                            id="fullName"
+                            name="fullName"
+                            required
+                        >
+                        <p class="error-message" id="nameError"></p>
+                    </div>
+
+                    <div>
+                        <label for="phone">Phone Number</label>
+                        <input 
+                            type="tel"
+                            id="phone"
+                            name="phone"
+                        >
+                        <p class="error-message" id="phoneError"></p>
+                    </div>
+
+                    <div>
+                        <label for="email">Email Address</label>
+                        <input 
+                            type="email"
+                            id="email"
+                            name="email"
+                        >
+                        <p class="error-message" id="emailError"></p>
+                    </div>
+
+                    <fieldset>
+                        <legend>Preferred Contact Method *</legend>
+
+                        <label>
+                            <input 
+                                type="radio"
+                                name="contactMethod"
+                                value="phone"
+                            >
+                            Phone
+                        </label>
+
+                        <label>
+                            <input 
+                                type="radio"
+                                name="contactMethod"
+                                value="email"
+                            >
+                            Email
+                        </label>
+
+                        <p class="error-message" id="contactMethodError"></p>
+                    </fieldset>
+
+                    <div>
+                        <label for="comments">Comments *</label>
+                        <textarea 
+                            id="comments"
+                            name="comments"
+                            required
+                        ></textarea>
+                        <p class="error-message" id="commentsError"></p>
+                    </div>
+
+                    <button type="submit">Submit</button>
+
+                </form>
+
+                <div id="formSuccess"></div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="wrapper">
+            <p>
+                This is a fictional concept site created for educational purposes.
+                All album artwork and artist information belong to their respective owners.
+            </p>
+            <p>&copy; 2026 Ado Resonance</p>
+        </div>
+    </footer>
+
+</body>
+</html>
