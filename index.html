@@ -13,39 +13,42 @@
 <body>
 
     <!-- HEADER -->
-    <header>
-        <div class="wrapper">
+<header>
+    <div class="wrapper">
+        <div class="header-inner">
             <div class="logo">
                 <h1>Ado Resonance</h1>
             </div>
-            <nav>
-                <ul>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#albums">Albums</a></li>
-                    <li><a href="#fan-challenge">Fan Challenge</a></li>
-                    <li><a href="#contact">Contact</a></li>
+
+            <nav aria-label="Primary">
+                <ul class="nav-list">
+                <li><a href="#about">About</a></li>
+                <li><a href="#albums">Albums</a></li>
+                <li><a href="#fan-challenge">Fan Challenge</a></li>
+                <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
 
             <div class="theme-toggle">
-                <button id="themeButton" type="button">
-                    Toggle Light / Dark Mode
-                </button>
+                <button id="themeButton" type="button" aria-label="Toggle light and dark mode">🌙</button>
             </div>
-
         </div>
-    </header>
+    </div>
+</header>
 
     <!-- MAIN -->
     <main>
-        <section id="hero">
-            <div class="wrapper">
+        <section id="hero" aria-label="Concert banner">
+            <div class="wrapper hero-inner">
                 <h2>Enter the World of Ado</h2>
-                <p>
-                    A curated music experience celebrating the power,
-                    emotion, and intensity of Ado’s discography.
-                </p>
-            </div>
+                <div class="hero-media"></div>
+                <div class="hero-text">
+                    <p>
+                        A curated music experience celebrating the power,
+                        emotion, and intensity of Ado’s discography.
+                    </p>
+                </div>
+            </div>    
         </section>
 
         <section id="about">
@@ -64,51 +67,55 @@
         </section>
 
         <!-- ALBUM DISPLAY -->
-    <div class="album-grid">
+    <section id="albums">
+        <div class="wrapper">
+        <h2>Featured Albums</h2>
 
-    <section class="album-card" data-album="0">
-        <div class="cover">
-            <img src="images/kyougen.jpg" alt="Kyōgen album cover">
+
+        <div class = "album-grid">
+            <section class="album-card" data-album="0">
+                <div class="cover">
+                    <img src="images/kyougen.jpg" alt="Kyōgen album cover">
+                </div>
+                <h3>Kyōgen (2022)</h3>
+            </section>
+
+            <section class="album-card" data-album="1">
+                <div class="cover">
+                    <img src="images/uta.jpg" alt="Uta no Uta album cover">
+                </div>
+                <h3>Uta no Uta (2022)</h3>
+            </section>
+
+            <section class="album-card" data-album="2">
+                <div class="cover">
+                    <img src="images/utattemita.jpg" alt="Utattemita album cover">
+                </div>
+                <h3>Utattemita (2023)</h3>
+            </section>
+
+            <section class="album-card" data-album="3">
+                <div class="cover">
+                    <img src="images/wish.jpg" alt="Ready For My Show album cover">
+                </div>
+                <h3>Ready For My Show (2024)</h3>
+            </section>
+
+            <section class="album-card" data-album="4">
+                <div class="cover">
+                    <img src="images/zanmu.jpg" alt="Zanmu album cover">
+                </div>
+                <h3>Zanmu (2024)</h3>
+            </section>
+
+            <section class="album-card" data-album="5">
+                <div class="cover">
+                    <img src="images/adobum.jpg" alt="Ado's Best Adobum album cover">
+                </div>
+                <h3>Ado's Best Adobum (2025)</h3>
+            </section>
         </div>
-        <h3>Kyōgen (2022)</h3>
     </section>
-
-    <section class="album-card" data-album="1">
-        <div class="cover">
-            <img src="images/uta.jpg" alt="Uta no Uta album cover">
-        </div>
-        <h3>Uta no Uta (2022)</h3>
-    </section>
-
-    <section class="album-card" data-album="2">
-        <div class="cover">
-            <img src="images/utattemita.jpg" alt="Utattemita album cover">
-        </div>
-        <h3>Utattemita (2023)</h3>
-    </section>
-
-    <section class="album-card" data-album="3">
-        <div class="cover">
-            <img src="images/wish.jpg" alt="Ready For My Show album cover">
-        </div>
-        <h3>Ready For My Show (2024)</h3>
-    </section>
-
-    <section class="album-card" data-album="4">
-        <div class="cover">
-            <img src="images/zanmu.jpg" alt="Zanmu album cover">
-        </div>
-        <h3>Zanmu (2024)</h3>
-    </section>
-
-    <section class="album-card" data-album="5">
-        <div class="cover">
-            <img src="images/adobum.jpg" alt="Ado's Best Adobum album cover">
-        </div>
-        <h3>Ado's Best Adobum (2025)</h3>
-    </section>
-
-</div>
 
 
 
@@ -229,7 +236,7 @@
 
     </main>
 
-    <!-- ================= FOOTER -->
+    <!-- FOOTER -->
     <footer>
         <div class="wrapper">
             <p>

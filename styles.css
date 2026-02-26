@@ -4,32 +4,30 @@
     --gutter: 32px;
     --section-pad: 64px;
 
-  /* Colors (placeholder for now, we’ll refine later) */
+    /* Colors */
     --bg-primary: #ffffff;
     --bg-secondary: #f3f4f6;
     --text-primary: #111827;
     --text-secondary: #4b5563;
     --border-color: #e5e7eb;
-
     --accent-color: #2563eb;
-
     --button-bg: #111827;
     --button-text: #ffffff;
+    --shadows: #030303a4;
+    --lshadows: #201e1ea4;
 
     /* Type */
     --font-sans: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
 }
 
-/* Dark mode variables (we’ll polish later) */
+/* dark mode variables */
 .dark {
     --bg-primary: #0b1020;
     --bg-secondary: #111827;
     --text-primary: #f9fafb;
     --text-secondary: #d1d5db;
     --border-color: #1f2937;
-
     --accent-color: #7c3aed;
-
     --button-bg: #7c3aed;
     --button-text: #ffffff;
 }
@@ -63,27 +61,67 @@ img {
     padding: 0 var(--gutter);
 }
 
-/* Simple utility */
+
 .error-message {
     margin: 6px 0 0;
     font-size: 0.95rem;
     font-weight: 600;
 }
 
-/* ==============================
-   Header
-============================== */
+#banner {
+    padding: 24px 0;              /* space above/below the image */
+    background: var(--bg-secondary);
+}
 
+.banner-inner {
+    height: 320px;                 /* set banner height */
+    border-radius: 18px;
+    background-image: url("images/concert.jpg");
+    background-size: cover;        /* keep cover inside the fixed box */
+    background-position: center;
+    background-repeat: no-repeat;
+    border: 1px solid var(--border-color);
+    overflow: hidden;
+}
+
+/* makes it stand out a bit better in dark mode, maybe tweak */
+.dark .banner-inner {
+    filter: brightness(0.85) saturate(1.1);
+}
+
+
+
+
+/* header */
 header {
-    background: #c7d2fe; /* wireframe-ish header tint (we’ll theme later) */
+    background: #c7d2fe;
     border-bottom: 1px solid var(--border-color);
+}
+
+/* dark header */
+.dark header {
+    background: var(--bg-primary);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--shadows);
+}
+
+.dark .nav-list a {
+    color: #e5e7eb;
+}
+
+.dark .nav-list a:hover {
+    background: var(--lshadows);
+}
+
+.dark .theme-toggle button:hover {
+    background: rgba(255,255,255,0.12);
 }
 
 .header-inner {
     display: flex;
     align-items: center;
     gap: 24px;
-    min-height: 72px;
+    min-height: 78px;
 }
 
 .logo h1 {
@@ -112,30 +150,54 @@ nav a {
     border-radius: 10px;
 }
 
-nav a:hover,
-nav a:focus {
-    outline: none;
+.nav-list a {
+    display: inline-block;
+    text-decoration: none;
+    color: var(--text-primary);
+    font-weight: 500;
+    padding: 10px 12px;
+    border-radius: 999px;
+}
+
+.nav-list a:hover {
     background: rgba(0, 0, 0, 0.08);
+}
+
+.nav-list a:focus {
+    outline: 3px solid rgba(0, 0, 0, 0.25);
+    outline-offset: 2px;
+}
+
+.theme-toggle {
+    margin-left: 8px;
 }
 
 .theme-toggle button {
     background: transparent;
-    border: 2px solid rgba(0,0,0,0.25);
-    padding: 10px 12px;
-    border-radius: 12px;
+    border: none;
     cursor: pointer;
-    font-weight: 700;
+    font-size: 1.4rem;
+    padding: 8px;
+    border-radius: 50%;
+    transition: background 0.2s ease, transform 0.2s ease;
 }
 
-/* ==============================
-   Sections
-============================== */
+.theme-toggle button:hover {
+    background: rgba(0,0,0,0.1);
+    transform: scale(1.08);
+}
 
-section {
+.theme-toggle button:focus {
+    background: rgba(255,255,255,0.15);
+}
+
+/* sections  */
+
+main > section {
     padding: var(--section-pad) 0;
 }
 
-section + section {
+main > section + section {
     border-top: 1px solid var(--border-color);
 }
 
@@ -150,9 +212,7 @@ p {
     color: var(--text-secondary);
 }
 
-/* ==============================
-   Hero (two-column)
-============================== */
+/* hero stuff */
 
 #hero {
     background: var(--bg-secondary);
@@ -160,7 +220,6 @@ p {
 
 .hero-inner {
     display: grid;
-    grid-template-columns: 1.2fr 0.8fr;
     gap: 36px;
     align-items: center;
 }
@@ -171,11 +230,49 @@ p {
 }
 
 .hero-media {
-  /* This matches your gray hero block in the wireframe */
-    height: 260px;
-    background: #9ca3af;
+    position: relative;
+    height: 440px;
+    background: url(images/concert.jpg);
+    background-size: cover;
+    background-position: center 80%;
+    background-repeat: no-repeat;
     border-radius: 16px;
     border: 1px solid var(--border-color);
+    overflow: hidden;
+}
+
+.hero-media::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    /* makes it a bit more darker and pop out more */
+    background: linear-gradient(
+        to bottom,
+        rgba(0,0,0,0.2),
+        rgba(0,0,0,0.55)
+    );
+}
+
+/* adding slight animation for the banner image */
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* calling fadeUp for the text below banner image + banner image */
+.hero-media, .hero-text {
+    animation: fadeUp 700ms ease-out both;
+}
+
+/* slight delay so it feels more staged */
+.hero-text {
+    animation-delay: 120ms;
 }
 
 /* ==============================
@@ -250,9 +347,7 @@ p {
     font-size: 0.95rem;
 }
 
-/* ==============================
-   Fan Challenge (two-column)
-============================== */
+/* fan challenge */
 
 .challenge-inner {
     display: grid;
@@ -292,9 +387,7 @@ p {
     background: var(--bg-secondary);
 }
 
-/* ==============================
-   Contact (basic structure)
-============================== */
+/* contact section */
 
 #contact form {
     display: grid;
@@ -333,9 +426,7 @@ p {
     font-weight: 800;
 }
 
-/* ==============================
-   Footer
-============================== */
+/* footer section */
 
 footer {
     padding: 28px 0;
@@ -347,3 +438,4 @@ footer p {
     margin: 0 0 10px;
     font-size: 0.95rem;
 }
+
