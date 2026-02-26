@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=1280">
     <meta name="description" content="Explore Ado Resonance, a concept music experience featuring Ado’s albums, tour dates, and interactive fan content built with modern HTML, CSS, and JavaScript.">
     <meta name="author" content="Peyton Van Voorhees">
-    <link rel="stylesheet" href="css/styles.css">
-    <script src="js/script.js" defer></script>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
 </head>
 
 <body>
@@ -64,39 +64,51 @@
         </section>
 
         <!-- ALBUM DISPLAY -->
-        <section id="albums">
-            <div class="wrapper">
+    <div class="album-grid">
 
-                <h2>Featured Albums</h2>
+    <section class="album-card" data-album="0">
+        <div class="cover">
+            <img src="images/kyougen.jpg" alt="Kyōgen album cover">
+        </div>
+        <h3>Kyōgen (2022)</h3>
+    </section>
 
-                <div class="album-controls">
-                    <button type="button" data-album="0">Kyougen (2022)</button>
-                    <button type="button" data-album="1">Uta no Uta (2022)</button>
-                    <button type="button" data-album="2">Utattemita (2023)</button>
-                    <button type="button" data-album="4">Ado "Ready For My Show Playlist" (2024)</button>
-                    <button type="button" data-album="5">Zanmu (2024)</button>
-                    <button type="button" data-album="6">Ado's Best Adobum (2025)</button>
-                </div>
+    <section class="album-card" data-album="1">
+        <div class="cover">
+            <img src="images/uta.jpg" alt="Uta no Uta album cover">
+        </div>
+        <h3>Uta no Uta (2022)</h3>
+    </section>
 
-                <div class="album-display">
+    <section class="album-card" data-album="2">
+        <div class="cover">
+            <img src="images/utattemita.jpg" alt="Utattemita album cover">
+        </div>
+        <h3>Utattemita (2023)</h3>
+    </section>
 
-                    <img 
-                        id="albumImage" 
-                        src="images/kyougen.jpg" 
-                        alt="Kyōgen album cover"
-                    >
+    <section class="album-card" data-album="3">
+        <div class="cover">
+            <img src="images/wish.jpg" alt="Ready For My Show album cover">
+        </div>
+        <h3>Ready For My Show (2024)</h3>
+    </section>
 
-                    <h3 id="albumTitle">Kyōgen</h3>
+    <section class="album-card" data-album="4">
+        <div class="cover">
+            <img src="images/zanmu.jpg" alt="Zanmu album cover">
+        </div>
+        <h3>Zanmu (2024)</h3>
+    </section>
 
-                    <p id="albumDescription">
-                        A dynamic debut album showcasing Ado’s explosive vocal
-                        intensity and theatrical storytelling across multiple genres.
-                    </p>
+    <section class="album-card" data-album="5">
+        <div class="cover">
+            <img src="images/adobum.jpg" alt="Ado's Best Adobum album cover">
+        </div>
+        <h3>Ado's Best Adobum (2025)</h3>
+    </section>
 
-                </div>
-
-            </div>
-        </section>
+</div>
 
 
 
@@ -217,7 +229,7 @@
 
     </main>
 
-    <!-- FOOTER -->
+    <!-- ================= FOOTER -->
     <footer>
         <div class="wrapper">
             <p>
