@@ -374,3 +374,42 @@ document.documentElement.classList.add("js");
         contactForm.reset();
         });
     });
+
+
+
+    // hero slideshow
+
+    const heroImages = [
+        "images/concert.jpg",
+        "images/concert2.jpeg",
+        "images/concert5.jpg",
+        "images/concert4.jpg",
+        "images/concert3.jpg"
+        ];
+
+    const heroAltText = [
+        "Ado performing live on stage",
+        "Wide arena shot of Ado performance",
+        "Crowd cheering at Ado concert",
+        "Wide angle shot, blue stage lighting over main stage",
+        "Ado performing alongside Hatsune Miku"
+    ];
+
+    const heroSlide = document.getElementById("heroSlide");
+
+    if (heroSlide) {
+    let currentIndex = 0;
+
+    setInterval(() => {
+        currentIndex = (currentIndex + 1) % heroImages.length;
+
+        heroSlide.style.opacity = 0;
+
+        setTimeout(() => {
+        heroSlide.src = heroImages[currentIndex];
+        heroSlide.alt = heroAltText[currentIndex];
+        heroSlide.style.opacity = 1;
+        }, 400);
+
+    }, 6000); // change slides every 6 seconds
+    }
