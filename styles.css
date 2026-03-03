@@ -249,7 +249,7 @@ p {
   height: 100%;
   object-fit: cover;
   object-position: center 80%;
-  transition: opacity 1000ms ease-in-out;
+  transition: opacity 600ms ease-in-out;
 }
 
 
@@ -406,7 +406,6 @@ p {
     font-size: 0.95rem;
 }
 
-
 .album-detail {
     display: grid;
     grid-template-columns: 320px 1fr;
@@ -438,26 +437,74 @@ p {
     display: block;
 }
 
+/* --- dimming styles within the album covers stuff */
+
+/* when album is active = rest of covers dim */
+.album-grid.is-dimming .album-card {
+    opacity: 0.55;
+    transform: scale(0.995);
+    transition: opacity 220ms ease, transform 220ms ease;
+}
+
+/* makes sure active album selected is not dimmed */
+.album-grid.is-dimming .album-card.is-active {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* enhanced the is-active style */
+.album-card.is-active {
+    border-color: var(--accent-color);
+    box-shadow:
+        0 0 0 2px var(--accent-color),
+        0 14px 32px rgba(0, 0, 0, 0.45);
+}
+
+.album-detail[hidden] {
+    display: none;
+}
+
+/* base state when shown */
+.album-detail {
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 260ms ease, transform 260ms ease;
+}
+
+/* add this class in JS when opening */
+.album-detail.is-open {
+    opacity: 1;
+    transform: translateY(0);
+}
+
 /* TRACKLIST STYLING WITHIN THE ALBUM SECTION */
 .tracklist-wrap{
-  max-height: 420px;
-  overflow: auto;
+    max-height: 420px;
+    overflow: auto;
 }
 
 .tracklist {
     margin: 10px 0 0;
-    padding-left: 18px;
+    padding-left: 0px;
     color: var(--text-secondary);
     column-count: 2;
     column-gap: 48px;
     max-height: 420px;
     overflow: auto;
+    list-style-position: inside;
 }
 
 .tracklist li {
     break-inside: avoid;
     margin: 6px 0;
     -webkit-column-break-inside: avoid;
+    padding-left: 6px;
+    transition: color 160ms ease, transform 160ms ease;
+}
+
+.tracklist li:hover {
+    color: var(--accent-color);
+    transform: translateX(4px);
 }
 
 .detail-close {
@@ -470,11 +517,6 @@ p {
     cursor: pointer;
     font-weight: 800;
     width: fit-content;
-}
-
-.album-card.is-active {
-  outline: 2px solid var(--accent-color);
-  outline-offset: 2px;
 }
 
 @media (max-width: 900px) {

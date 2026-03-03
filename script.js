@@ -73,11 +73,19 @@ document.documentElement.classList.add("js");
     const gameResult = document.getElementById("gameResult");
 
     // Wallpaper options (user wins -> randomly choose one)
+    // credit for images:
+    // https://www.tokyohive.com/article/2024/10/ado-celebrates-her-birthday-with-new-single-sakura-biyori-and-time-machine-featuring-hatsune-miku
+    // https://www.reddit.com/r/ADO/comments/1cq6q17/ado_in_wallpaper_engine/
+    // https://steamcommunity.com/sharedfiles/filedetails/?id=3385561987
+    // https://www.uscannenbergmedia.com/2024/03/30/ados-wish-tour-a-shot-of-adrenaline-from-an-faceless-voice/
+    // https://cnalifestyle.channelnewsasia.com/entertainment/ado-singapore-concert-2025-hibana-465421
+
     const wallpapers = [
         { src: "images/w1.jpg", alt: "Ado-themed digital wallpaper 1" },
         { src: "images/w2.jpg", alt: "Ado-themed digital wallpaper 2" },
         { src: "images/w3.jpg", alt: "Ado-themed digital wallpaper 3" },
-        { src: "images/w4.jpg", alt: "Ado-themed digital wallpaper 4" }
+        { src: "images/w4.jpg", alt: "Ado-themed digital wallpaper 4" },
+        { src: "images/w5.jpg", alt: "Ado-themed digital wallpaper 5" }
     ];
 
     if (gameForm && guessInput && gameError && gameResult) {
@@ -196,6 +204,21 @@ document.documentElement.classList.add("js");
     function openAlbum(index, clickedCard) {
     const a = albumData[index];
     if (!a) return;
+
+    // click outside of album selected -> drops the selected album as if pressed close button
+    document.addEventListener("pointerdown", (e) => {
+        // If detail isn't open, do nothing
+        if (albumDetail.hidden) return;
+
+        // If you clicked inside the detail panel, do nothing
+        if (albumDetail.contains(e.target)) return;
+
+        // If you clicked an album card, do nothing (album click handler will run)
+        if (e.target.closest(".album-card")) return;
+
+        // Otherwise, you clicked "outside" => close
+    closeAlbumDetail();
+});
 
     // Populate panel
     detailImg.src = a.cover;
@@ -377,13 +400,14 @@ document.documentElement.classList.add("js");
 
 
 
-    // hero slideshow
+    // 6. hero slideshow
 
     const heroImages = [
         "images/concert.jpg",
         "images/concert2.jpeg",
         "images/concert5.jpg",
         "images/concert4.jpg",
+        "images/concert6.jpg",
         "images/concert3.jpg"
         ];
 
@@ -392,6 +416,7 @@ document.documentElement.classList.add("js");
         "Wide arena shot of Ado performance",
         "Crowd cheering at Ado concert",
         "Wide angle shot, blue stage lighting over main stage",
+        "Crowd angle shot, purple lighting",
         "Ado performing alongside Hatsune Miku"
     ];
 
@@ -413,3 +438,108 @@ document.documentElement.classList.add("js");
 
     }, 6000); // change slides every 6 seconds
     }
+
+// 7. ALBUM COVER DIMMING
+
+//big comments for future reference:
+// The container that holds all album cards
+// const albumGrid = document.getElementById("albumGrid");
+// // All individual album cards
+// const albumCards = albumGrid.querySelectorAll(".album-card");
+// // The expandable detail panel
+// const albumDetail = document.getElementById("albumDetail");
+// // The close button inside the detail panel
+// const detailClose = document.getElementById("detailClose");
+//basically just calling everything previous
+
+//this function contains:
+// 1. Marking the clicked album as active
+// 2. Dimming the other albums
+// 3. Showing and animating the detail panel
+
+const albumGrid7 = document.getElementById("albumGrid");
+const albumCards7 = albumGrid7 ? albumGrid7.querySelectorAll(".album-card") : [];
+
+const albumDetail7 = document.getElementById("albumDetail");
+const detailClose7 = document.getElementById("detailClose");
+
+function openAlbumDetail(card) {
+    // remove active state from all cards first
+        albumCards7.forEach(c => c.classList.remove("is-active"));
+        // marks the clicked card as active
+        card.classList.add("is-active");
+
+        // dim the rest, CSS uses this class to fade the non-active albums
+        albumGrid7.classList.add("is-dimming");
+
+        // show detail + animate in, (removes the [hidden] attribute so it's rendered)
+        albumDetail7.hidden = false;
+
+        // force a reflow so the transition triggers reliably. this ensures that when the animation class is called next, the transition\
+        // will properly trigger instead of being skipped.
+        albumDetail7.offsetHeight;
+
+        // add the class that triggers the fade/slide animation
+        albumDetail7.classList.add("is-open");
+}
+
+//this next part closes the album detail. basically reverses the animation, removes the active/dim state, and hides the panel after the animation ends
+function closeAlbumDetail() {
+    // start the fade-out / slide-down animation
+    albumDetail7.classList.remove("is-open");
+
+    // after animation, hide + clear active/dim
+    window.setTimeout(() => {
+        albumDetail7.hidden = true;
+        albumCards7.forEach(c => c.classList.remove("is-active"));
+        albumGrid7.classList.remove("is-dimming");
+    }, 260);
+}
+
+albumCards7.forEach(card => {
+    card.addEventListener("click", () => {
+        // click the active album again -> closes it
+        const isOpen = !albumDetail7.hidden;
+        const isSameCard = card.classList.contains("is-active");
+
+        if (isOpen && isSameCard) {
+            closeAlbumDetail();
+            return;
+        }
+
+        openAlbumDetail(card);
+    });
+});
+
+if (detailClose7) {
+    detailClose7.addEventListener("click", closeAlbumDetail);
+}
+
+// Allows closing the detail view by pressing esc.
+document.addEventListener("keydown", (e) => {
+
+  if (e.key === "Escape" && !albumDetail7.hidden) {
+    closeAlbumDetail();
+  }
+
+});
+
+// click outside of album selected -> drops the selected album as if pressed close button
+document.addEventListener("pointerdown", (e) => {
+    // If detail isn't open, do nothing
+    if (albumDetail7.hidden) return;
+
+    // If you clicked inside the detail panel, do nothing
+    if (albumDetail7.contains(e.target)) return;
+
+    // If you clicked an album card, do nothing (album click handler will run)
+    if (e.target.closest(".album-card")) return;
+
+    // Otherwise, you clicked "outside" => close
+    closeAlbumDetail();
+});
+
+
+
+    
+
